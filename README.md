@@ -16,5 +16,26 @@
     - Medianą
 
 ## Makefile:
-- `make main` paleidžia programą
+- `make run` paleidžia programą
+- `make main` sukompliuoja programą
+- `make funtions.o` sukompliuoja funkcijų failą
 - `make clean` išvalo nereikalingus failus.
+
+## Įvedimo failas pavyzdys:
+```
+Vardas Pavardė ND1 ND2 ND3 ND4 ND5 Egzaminas
+Vardenis Pavardenis 10 9 8 7 6 5
+Vardenis1 Pavardenis1 10 9 8 7 6 5
+```
+
+## Failai:
+- `main.cpp` - pagrindinis failas.
+- `MyLib.h` - bibliotekos header failas.
+- `funkcijos.cpp` - funkcijų failas.
+- `funkcijos.h` - funkcijų header failas.
+- `Makefile` - makefile failas.
+
+## Testuota naudojant:
+- Ubuntu 20.04
+- g++ 9.4.0
+- GNU Make 4.2.1
