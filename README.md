@@ -15,6 +15,17 @@
     - Vidurkiu
     - Medianą
 
+## Įvedimo failas pavyzdys:
+```
+Vardas Pavardė ND1 ND2 ND3 ND4 ND5 Egzaminas
+Vardenis Pavardenis 10 9 8 7 6 5
+Vardenis1 Pavardenis1 10 9 8 7 6 5
+```
+
+## Testuota naudojant:
+- Ubuntu 20.04
+- g++ 9.4.0
+
 ## Makefile:
 - `make main` paleidžia programą
 - `make clean` išvalo nereikalingus failus.
