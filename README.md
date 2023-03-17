@@ -47,7 +47,7 @@ Vardenis1 Pavardenis1 10 9 8 7 6 5
 | 10000000, 10                               | 41.58      |
 
 ### Studentų duomenų apdorojimas:
-| Failo dydis (studentų sk., namų darbų sk.) | Nuskaitymo iš failo laikas (s) | Studentų išrikiavimo laikas (s) | Studentų suskirstymas į 2 grupes laikas (s) | Gerų studentų (galutinis >= 5) išvedimas į failą laikas (s) | Blogų studentų (galutinis < 5) išvedimas į failą laikas (s) | Visos programos laikas (s) |
+| Failo dydis (studentų sk., namų darbų sk.) | Nuskaitymo iš failo laikas (s) | Studentų išrikiavimo laikas (s) | Studentų suskirstymas į 2 grupes laikas (s) | Gerų studentų (galutinis >= 5) išvedimo į failą laikas (s) | Blogų studentų (galutinis < 5) išvedimo į failą laikas (s) | Visos programos laikas (s) |
 |--------------------------------------------|--------------------------------|---------------------------------|---------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------|----------------------------|
 | 1000, 10                                   | 0.03                           | 0                               | 0                                           | 0                                                           | 0                                                           | 0.03                      |
 | 10000, 10                                  | 0.052                          | 0.003                           | 0.001                                       | 0.011                                                       | 0.006                                                       | 0.073                      |
