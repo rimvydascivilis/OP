@@ -1,11 +1,29 @@
-run: main
-	./main.app
+CXX := g++
+CXXFLAGS := -std=c++17 
+RELEASE_FLAGS = -O3
 
-main: main.cpp funtions.o
-	g++ -O3 -std=c++2a main.cpp funtions.o -o main.app
+SRCDIR = src
+BUILDDIR = build
 
-funtions.o: funtions.cpp funtions.h
-	g++ -O3 -std=c++2a -c funtions.cpp
+EXEC = $(BUILDDIR)/program
+SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+OBJECTS = $(patsubst $(SRCDIR)/%.cpp,$(BUILDDIR)/%.o,$(SOURCES))
+
+.PHONY: all release clean
+
+all: $(EXEC)
+
+$(EXEC): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+run: $(EXEC)
+	./$(EXEC)
+
+release: CXXFLAGS += $(RELEASE_FLAGS)
+release: all
 
 clean:
-	rm -rf *.app *.o
+	rm -f $(BUILDDIR)/*.o $(EXEC)
