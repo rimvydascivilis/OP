@@ -1,25 +1,31 @@
 # 2023 m. ISI 1k. objektinio programavimo darbas
 
 ## Funkcionalumas:
-- galima įvesti studentų duomenis:
+- Galima įvesti studentų duomenis:
     - rankiniu būdu.
     - iš failo.
+- Galima sugeneruoti 5 studentų failus su atsitiktiniais duomenimis.
 - Programa nuskaito įvestus duomenis:
     - Studento vardą.
     - pavardę.
     - Namų darbų rezulttus.
     - egzamino rezultatą.
-- Naudotojas gali pasirinkti, jog balai būtu sugeneruoti atsitiktinai.
+- Naudotojas gali pasirinkti, jog vieno studento balai būtu sugeneruoti atsitiktinai.
 - Programa suskaičiuoja galutinį balą (0.4 * *namų darbų balas* + 0.6 * *egzamino rezultatas*).
 - Namų darbų balą galima apskaičiuoti:
     - Vidurkiu
     - Medianą
+- Programa suskirsto studentus į 2 grupes:
+    - Geri studentai (galutinis >= 5)
+    - Blogi studentai (galutinis < 5)
+- Programa išveda rezultatus į 2 failus:
+    - `geriStudentai.txt` (galutinis >= 5)
+    - `blogiStudentai.txt` (galutinis < 5)
 
 ## Makefile:
-- `make run` paleidžia programą
-- `make main` sukompliuoja programą
-- `make funtions.o` sukompliuoja funkcijų failą
+- `make` sukompliuoja programą
 - `make clean` išvalo nereikalingus failus.
+- `make release` sukompliuoja programą su optimizacijomis.
 
 ## Įvedimo failo pavyzdys:
 ```
@@ -30,9 +36,13 @@ Vardenis1 Pavardenis1 10 9 8 7 6 5
 
 ## Failai:
 - `main.cpp` - pagrindinis failas.
-- `MyLib.h` - bibliotekos header failas.
-- `funkcijos.cpp` - funkcijų failas.
-- `funkcijos.h` - funkcijų header failas.
+- `gen_stud_file.cpp` - studentų failo generavimo funkcijų failas.
+- `gen_stud_file.h` - studentų failo generavimo funkcijų antraštė.
+- `student_io.cpp` - studentų duomenų įvedimo ir išvedimo funkcijų failas.
+- `student_io.h` - studentų duomenų įvedimo ir išvedimo funkcijų antraštė.
+- `student.cpp` - studentų duomenų apdorojimo funkcijų ir struktūros failas.
+- `student.h` - studentų duomenų apdorojimo funkcijų ir struktūros antraštė.
+- `timer.h` - laiko matavimo klasė.
 - `Makefile` - makefile failas.
 
 ## Programos veikimo laikas:
