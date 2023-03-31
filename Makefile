@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++17 
+CXXFLAGS := -std=c++17
 RELEASE_FLAGS = -O3
 
 SRCDIR = src
@@ -9,15 +9,16 @@ EXEC = $(BUILDDIR)/program
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp,$(BUILDDIR)/%.o,$(SOURCES))
 
-.PHONY: all release clean
+.PHONY: release clean run list vector deque
 
-all: $(EXEC)
+deque:
+	$(CXX) $(CXXFLAGS) $(RELEASE_FLAGS) -o $(EXEC) $(SRCDIR)/deque_main.cpp $(SRCDIR)/gen_stud_file.cpp $(SRCDIR)/student_io.cpp $(SRCDIR)/student.cpp $(SRCDIR)/utility.cpp
 
-$(EXEC): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+list:
+	$(CXX) $(CXXFLAGS) $(RELEASE_FLAGS) -o $(EXEC) $(SRCDIR)/list_main.cpp $(SRCDIR)/gen_stud_file.cpp $(SRCDIR)/student_io.cpp $(SRCDIR)/student.cpp $(SRCDIR)/utility.cpp
 
-$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+vector:
+	$(CXX) $(CXXFLAGS) $(RELEASE_FLAGS) -o $(EXEC) $(SRCDIR)/main.cpp $(SRCDIR)/gen_stud_file.cpp $(SRCDIR)/student_io.cpp $(SRCDIR)/student.cpp $(SRCDIR)/utility.cpp
 
 run: $(EXEC)
 	./$(EXEC)

@@ -4,7 +4,7 @@
 #include "utility.h"
 
 int main() {
-    vector<Student> students;
+    list<Student> students;
     string results;
     double programDuration = 0;
     Timer timer;
@@ -33,7 +33,7 @@ int main() {
     }
 
     timer.reset();
-    sort(students.begin(), students.end(), [](Student &a, Student &b) {
+    students.sort([](const Student &a, const Student &b) {
         return a.surname > b.surname;
     });
     timer.stop();
@@ -42,8 +42,8 @@ int main() {
     programDuration += timer.getDuration();
     
     timer.reset();
-    vector<Student> failedStudents;
-    vector<Student> passedStudents;
+    list<Student> failedStudents;
+    list<Student> passedStudents;
     splitStudents(students, passedStudents, failedStudents);
     timer.stop();
 

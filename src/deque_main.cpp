@@ -4,7 +4,7 @@
 #include "utility.h"
 
 int main() {
-    vector<Student> students;
+    deque<Student> students;
     string results;
     double programDuration = 0;
     Timer timer;
@@ -42,8 +42,8 @@ int main() {
     programDuration += timer.getDuration();
     
     timer.reset();
-    vector<Student> failedStudents;
-    vector<Student> passedStudents;
+    deque<Student> failedStudents;
+    deque<Student> passedStudents;
     splitStudents(students, passedStudents, failedStudents);
     timer.stop();
 

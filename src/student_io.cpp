@@ -48,6 +48,82 @@ void addStudentsFromFile(vector<Student> &students, string fileName) {
     }
 }
 
+void addStudentsFromFile(list<Student> &students, string fileName) {
+    ifstream file(fileName);
+
+    int currentLine = 0;
+    string line;
+    int gradesCount = 0;
+
+    getline(file, line);
+    stringstream ss(line);
+    string grade;
+    while (ss >> grade) {
+        gradesCount++;
+    }
+    gradesCount -= 2; // name and surname
+
+    while (getline(file, line)) {
+        currentLine++;
+        Student newStudent = parseLine(line);
+
+        if (newStudent.homeworkGrades.size() < 2) {
+            cout << "Nepavyko nuskaityti pazymiu, studentas praleidziamas (" << currentLine << "eil.)" << endl;
+            continue;
+        }
+        if (newStudent.homeworkGrades.size() != gradesCount) {
+            cout << "Nepavyko nuskaityti visu pazymiu, arba nesuvesti visi pazymiai? studentas praleidziamas (" << currentLine << "eil.)" << endl;
+            continue;
+        }
+        newStudent.examGrade = newStudent.homeworkGrades.back();
+        newStudent.homeworkGrades.pop_back();
+        students.push_back(newStudent);
+    }
+    file.close();
+    if (students.empty()) {
+        cout << "Nepavyko nuskaityti nei vieno studento is failo" << endl;
+        exit(1);
+    }
+}
+
+void addStudentsFromFile(deque<Student> &students, string fileName) {
+    ifstream file(fileName);
+
+    int currentLine = 0;
+    string line;
+    int gradesCount = 0;
+
+    getline(file, line);
+    stringstream ss(line);
+    string grade;
+    while (ss >> grade) {
+        gradesCount++;
+    }
+    gradesCount -= 2; // name and surname
+
+    while (getline(file, line)) {
+        currentLine++;
+        Student newStudent = parseLine(line);
+
+        if (newStudent.homeworkGrades.size() < 2) {
+            cout << "Nepavyko nuskaityti pazymiu, studentas praleidziamas (" << currentLine << "eil.)" << endl;
+            continue;
+        }
+        if (newStudent.homeworkGrades.size() != gradesCount) {
+            cout << "Nepavyko nuskaityti visu pazymiu, arba nesuvesti visi pazymiai? studentas praleidziamas (" << currentLine << "eil.)" << endl;
+            continue;
+        }
+        newStudent.examGrade = newStudent.homeworkGrades.back();
+        newStudent.homeworkGrades.pop_back();
+        students.push_back(newStudent);
+    }
+    file.close();
+    if (students.empty()) {
+        cout << "Nepavyko nuskaityti nei vieno studento is failo" << endl;
+        exit(1);
+    }
+}
+
 int getHomeworkCountFromInput() {
     int homeworkCount;
     while (true) {
@@ -160,6 +236,34 @@ void addStudentsFromSTDIN(vector<Student> &students) {
     } while (tolower(action) != 'b');
 }
 
+void addStudentsFromSTDIN(list<Student> &students) {
+    char action = 't';
+    do {
+        Student newStudent;
+        enterStudentInformation(newStudent);
+        students.push_back(newStudent);
+
+        cout << "Baigti darba spausk \"b\", testi spausk bet kuri kita klavisa: ";
+        cin >> action;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    } while (tolower(action) != 'b');
+}
+
+void addStudentsFromSTDIN(deque<Student> &students) {
+    char action = 't';
+    do {
+        Student newStudent;
+        enterStudentInformation(newStudent);
+        students.push_back(newStudent);
+
+        cout << "Baigti darba spausk \"b\", testi spausk bet kuri kita klavisa: ";
+        cin >> action;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    } while (tolower(action) != 'b');
+}
+
 void enterStudentInformation(Student &student) {
     cout << "Iveskite studento varda ir pavarde: ";
     cin >> student.name >> student.surname;
@@ -227,6 +331,44 @@ bool getFinalGradeCalculationMethod() {
 }
 
 void writeResultsToFile(vector<Student>& students, string fileName, bool useAverage) {
+    if (students.size() < 1) return;
+
+    string finalGradeType = useAverage ? "Vid." : "Med.";
+    stringstream ss;
+    ss << setw(20) << left << "Pavarde" << setw(20) << "Vardas" << "Galutinis (" + finalGradeType + ")" << endl;
+    ss << string(60, '-') << endl;
+
+    string res = ss.str();
+    for (int i = 0; i < students.size() - 1; i++) {
+        res += getFormattedStudentData(students.at(i), useAverage) + "\n";
+    }
+    res += getFormattedStudentData(students.at(students.size() - 1), useAverage);
+
+    ofstream file(fileName);
+    file << res;
+    file.close();
+}
+
+void writeResultsToFile(list<Student> &students, string fileName, bool useAverage) {
+    if (students.size() < 1) return;
+
+    string finalGradeType = useAverage ? "Vid." : "Med.";
+    stringstream ss;
+    ss << setw(20) << left << "Pavarde" << setw(20) << "Vardas" << "Galutinis (" + finalGradeType + ")" << endl;
+    ss << string(60, '-') << endl;
+
+    string res = ss.str();
+    for (auto it = students.begin(); it != prev(students.end()); it++) {
+        res += getFormattedStudentData(*it, useAverage) + "\n";
+    }
+    res += getFormattedStudentData(students.back(), useAverage);
+
+    ofstream file(fileName);
+    file << res;
+    file.close();
+}
+
+void writeResultsToFile(deque<Student> &students, string fileName, bool useAverage) {
     if (students.size() < 1) return;
 
     string finalGradeType = useAverage ? "Vid." : "Med.";

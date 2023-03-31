@@ -7,6 +7,8 @@
 #include <random>
 #include <iostream>
 #include <numeric>
+#include <list>
+#include <deque>
 
 using std::vector;
 using std::string;
@@ -19,6 +21,8 @@ using std::cout;
 using std::cin;
 using std::numeric_limits;
 using std::streamsize;
+using std::list;
+using std::deque;
 
 struct Student {
     string name, surname;
