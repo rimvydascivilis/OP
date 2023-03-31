@@ -22,6 +22,12 @@
     - `geriStudentai.txt` (galutinis >= 5)
     - `blogiStudentai.txt` (galutinis < 5)
 
+## Programos paleidimas
+- Repozitorijos klonavimas `git clone https://github.com/rimvydascivilis/OP.git`
+- Direktorijos pakeitimas `cd OP`
+- Sukompiliuoti programą `make <Konteinerio tipas>` ([Žiurėkite į Makefile skiltį](#Makefile))
+- Programos paleidimas `./build/program`
+
 ## Makefile:
 - `make vector` sukompliuoja programą naudojant vector konteinerį.
 - `make list` sukompliuoja programą naudojant list konteinerį.
@@ -54,7 +60,7 @@ Vardenis1 Pavardenis1 10 9 8 7 6 5
 | 100000, 10                                 | 0.246                          | 0.023                           | 0.013                                       | 0.039                                                       | 0.034                                                       | 0.355                      |
 | 1000000, 10                                | 2.284                          | 0.268                           | 0.115                                       | 0.395                                                       | 0.389                                                       | 3.451                      |
 | 10000000, 10                               | 25.119                         | 3.46                            | 1.249                                       | 4.243                                                       | 3.977                                                       | 38.048                     |
-### Tesavimas su skirtingais konteineriais:
+### Testavimas su skirtingais konteineriais:
 #### Vector konteineris:
 | Failo dydis (studentų sk., namų darbų sk.) | Nuskaitymo iš failo laikas (s) | Studentų išrikiavimo laikas (s) | Studentų suskirstymas į 2 grupes laikas (s) |
 |--------------------------------------------|--------------------------------|---------------------------------|---------------------------------------------|
