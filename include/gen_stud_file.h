@@ -21,7 +21,6 @@ using std::left;
 using std::fixed;
 using std::setprecision;
 using std::random_device;
-namespace fs = std::filesystem;
 
 void gen_stud_file(int homeworkCount);
 void createFileWithStudents(string filename, int fileSize, int homeworkCount);

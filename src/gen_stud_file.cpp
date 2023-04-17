@@ -4,7 +4,7 @@ void gen_stud_file(int homeworkCount) {
     vector<int> fileSizes = {1000, 10000, 100000, 1000000, 10000000};
     Timer timer;
     double duration;
-    fs::create_directory("data");
+    system("mkdir -p data");
     for(int fileSize: fileSizes) {
         timer.reset();
         string filename = "data/studentai" + to_string(fileSize) + ".txt";

@@ -32,41 +32,52 @@ int main() {
         calculateFinalGrade(student, useAverage);
     }
 
-    timer.reset();
-    sort(students.begin(), students.end(), [](Student &a, Student &b) {
-        return a.surname > b.surname;
-    });
-    timer.stop();
 
-    cout << "Studentu rusiavimas uztruko: " << timer.getDuration() << "s" << endl;
-    programDuration += timer.getDuration();
     
-    timer.reset();
-    vector<Student> failedStudents;
-    vector<Student> passedStudents;
-    splitStudents(students, passedStudents, failedStudents);
-    timer.stop();
-
-    cout << "Studentu surinkimas uztruko: " << timer.getDuration() << "s" << endl;
-    programDuration += timer.getDuration();
-    timer.reset();
-
-    fs::create_directory("data");
-
-    timer.reset();
-    writeResultsToFile(passedStudents, "data/geriStudentai.txt", useAverage);
-    timer.stop();
-
-    cout << "Geru studentu irasymas i faila uztruko: " << timer.getDuration() << "s" << endl;
-    programDuration += timer.getDuration();
+    int method = selectStudentSplittingMethod();
+    if (method == 'A') {
+        timer.reset();
+        sort(students.begin(), students.end(), [](Student &a, Student &b) {
+            return a.finalGrade < b.finalGrade;
+        });
+        timer.stop();
+        cout << "Studentu rusiavimas uztruko: " << timer.getDuration() << "s" << endl;
+        programDuration += timer.getDuration();
     
-    timer.reset();
-    writeResultsToFile(failedStudents, "data/blogiStudentai.txt", useAverage);
-    timer.stop();
-
-    cout << "Blogu studentu irasymas i faila uztruko: " << timer.getDuration() << "s" << endl;
-    programDuration += timer.getDuration();
-
+        timer.reset();
+        vector<Student> failedStudents;
+        vector<Student> passedStudents;
+        splitStudents1(students, passedStudents, failedStudents);
+        timer.stop();
+        cout << "Studentu surinkimas uztruko: " << timer.getDuration() << "s" << endl;
+        programDuration += timer.getDuration();
+        
+        timer.reset();
+        writeResultsToFile(students, failedStudents, useAverage);
+        timer.stop();
+        programDuration += timer.getDuration();
+    } else {
+        timer.reset();
+        sort(students.begin(), students.end(), [](Student &a, Student &b) {
+            return a.finalGrade > b.finalGrade;
+        });
+        timer.stop();
+        cout << "Studentu rusiavimas uztruko: " << timer.getDuration() << "s" << endl;
+        programDuration += timer.getDuration();
+    
+        timer.reset();
+        vector<Student> failedStudents;
+        splitStudents2(students, failedStudents);
+        timer.stop();
+        cout << "Studentu surinkimas uztruko: " << timer.getDuration() << "s" << endl;
+        programDuration += timer.getDuration();
+        
+        timer.reset();
+        writeResultsToFile(students, failedStudents, useAverage);
+        timer.stop();
+        programDuration += timer.getDuration();
+    }
+    
     cout << "Programos veikimo laikas (Be naudotojo ivesties laukimo laiko): " << programDuration << "s" << endl;
     return 0;
 }
