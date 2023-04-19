@@ -1,6 +1,7 @@
 #include <vector>
 #include <list>
 #include <deque>
+#include <iostream>
 #include "student.h"
 
 int selectStudentSplittingMethod();

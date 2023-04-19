@@ -1,5 +1,4 @@
 #include "utility.h"
-#include <iostream>
 
 int selectStudentSplittingMethod() {
     char method = 0;
