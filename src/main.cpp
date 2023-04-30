@@ -51,7 +51,7 @@ int main() {
         programDuration += timer.getDuration();
         
         timer.reset();
-        writeResultsToFile(students, failedStudents, useAverage);
+        writeResultsToFile(passedStudents, failedStudents, useAverage);
         timer.stop();
         programDuration += timer.getDuration();
     } else if(method == 'B') {
