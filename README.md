@@ -132,7 +132,7 @@ Vardenis1 Pavardenis1 10 9 8 7 6 5
         - Greičiausias konteineris: deque
         - Antras greičiausias konteineris: list
         - Lėčiausias konteineris: vector
-- [v1.0](https://github.com/rimvydascivilis/OP/releases/tag/v1.0.0):
+- [v1.0](https://github.com/rimvydascivilis/OP/releases/tag/v1.0.1):
     - Studentų duomenų skaidymas į 2 grupes skirtingais būdais:
         - A strategija: studentai, kurių galutinis balas yra mažesnis už 5, yra perkelti į naują konteinerį *blogiStudentai*, o kurių galutinis balas yra didesnis arba lygus 5, yra perkelti į naują konteinerį *geriStudentai*
         - B strategija: studentai, kurių galutinis balas yra mažesnis už 5, yra ištrinami iš konteinerio
